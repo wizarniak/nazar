@@ -7,7 +7,7 @@ const sound = new Howl({
 const INTERVAL = 60 * 60 * 1000;
 
 const notify = async () => {
-  new Notification('Check-in', {
+  const notification = new Notification('Check-in', {
     'body': 'What are you doing right now?',
   });
   sound.play();
@@ -19,9 +19,13 @@ const timer = (ms) => {
 
 const run = async () => {
   while (true) {
-    notify();
     await timer(INTERVAL);
+    notify();
   }
 }
 
 run();
+
+document.getElementById('form').onsubmit = () => {
+  console.log('form submitted');
+}
