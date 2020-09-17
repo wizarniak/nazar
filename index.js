@@ -1,9 +1,16 @@
+require("howler");
+
+const sound = new Howl({
+  src: ['Music_Box.mp3']
+});
+
 const INTERVAL = 60 * 60 * 1000;
 
 const notify = async () => {
   new Notification('Check-in', {
     'body': 'What are you doing right now?',
   });
+  sound.play();
 }
 
 const timer = (ms) => {
