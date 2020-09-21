@@ -1,4 +1,6 @@
-require("howler");
+const fs = require('fs');
+
+require('howler');
 
 const sound = new Howl({
   src: ['Music_Box.mp3']
@@ -27,5 +29,13 @@ const run = async () => {
 run();
 
 document.getElementById('form').onsubmit = () => {
-  console.log('form submitted');
+  const date = new Date()
+  const content = date + '\nWhat are you doing right now?\n' +
+  document.getElementById('task').value + 
+  '\nHow do you feel right now?\n' + 
+  document.getElementById('feel').value + '\n\n';
+  fs.appendFile('logs.txt', content, (err) => {
+    if (err) throw err;
+    console.log('File saved!');
+  });
 }
